@@ -1,0 +1,37 @@
+{
+  "id": "3832815",
+  "name": "what to eat",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11372701",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e8b9",
+      "unicode_decimal": 59577
+    },
+    {
+      "icon_id": "11372777",
+      "name": "收藏",
+      "font_class": "shoucang1",
+      "unicode": "e8c6",
+      "unicode_decimal": 59590
+    },
+    {
+      "icon_id": "7790030",
+      "name": "奥尔良小鸡腿",
+      "font_class": "aoerliangxiaojitui",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "5219460",
+      "name": "鸡腿",
+      "font_class": "jitui",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    }
+  ]
+}
