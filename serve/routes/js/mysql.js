@@ -19,13 +19,19 @@ const mysql = require('mysql');
 // module.exports = connection;
 
 
-// 用 Railway 的真实 DB 配置，别用本地
+// 用 Railway 的真实 DB 配置，兼容两种变量命名
+const dbHost = process.env.MYSQLHOST || process.env.MYSQL_HOST || 'localhost';
+const dbPort = parseInt(process.env.MYSQLPORT || process.env.MYSQL_PORT || '3306', 10);
+const dbUser = process.env.MYSQLUSER || process.env.MYSQL_USER || 'root';
+const dbPassword = process.env.MYSQLPASSWORD || process.env.MYSQL_PASSWORD || '';
+const dbName = process.env.MYSQLDATABASE || process.env.MYSQL_DATABASE || 'what_to_eat';
+
 const connection = mysql.createConnection({
-  host: process.env.MYSQL_HOST || 'localhost',     // railwaysql.railway.internal
-  port: parseInt(process.env.MYSQL_PORT) || 3306,  // 3306
-  user: process.env.MYSQL_USER || 'root',          // root
-  password: process.env.MYSQL_PASSWORD,            // mysqlrailway_internalxxx
-  database: process.env.MYSQL_DATABASE || 'railwaysql',  // railwaysql
+  host: dbHost,
+  port: dbPort,
+  user: dbUser,
+  password: dbPassword,
+  database: dbName,
   connectTimeout: 10000,
   acquireTimeout: 10000
 });
@@ -34,10 +40,10 @@ const connection = mysql.createConnection({
 connection.connect(function(err) {
   if (err) {
     console.error('❌ MySQL 连接失败:', err.code, err.message);
-    console.error('检查 MYSQL_HOST 等环境变量');
+    console.error('检查 MYSQLHOST/MYSQLPORT/MYSQLUSER/MYSQLPASSWORD/MYSQLDATABASE 环境变量');
     return;
   }
-  console.log('✅ MySQL 连接成功，host:', process.env.MYSQL_HOST);
+  console.log('✅ MySQL 连接成功，host:', dbHost, 'db:', dbName);
 });
 
 // 必须加这个，防止 Unhandled error crash
