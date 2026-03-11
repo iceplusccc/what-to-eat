@@ -13,7 +13,17 @@ import local from "../utils/local";
 
 
 // 默认服务器地址（优先读取部署环境变量）
-const API_BASE_URL = process.env.VUE_APP_API_BASE_URL || "http://127.0.0.1:5000";
+const normalizeBaseUrl = (url) => {
+    if (!url || typeof url !== 'string') return "http://127.0.0.1:5000";
+    const trimmed = url.trim();
+    if (!trimmed) return "http://127.0.0.1:5000";
+
+    // Railway 常见误配：只填域名未带协议
+    const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+    return withProtocol.replace(/\/+$/, '');
+}
+
+const API_BASE_URL = normalizeBaseUrl(process.env.VUE_APP_API_BASE_URL);
 axios.defaults.baseURL = API_BASE_URL;
 
 /* 
