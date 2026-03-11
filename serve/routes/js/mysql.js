@@ -5,11 +5,12 @@ var router = express.Router();
 const mysql = require('mysql');
 
 //创建连接对象
-const connection = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"123456",
-    database:"what_to_eat"
+var connection = mysql.createConnection({
+  host: process.env.MYSQLHOST || 'localhost',
+  port: process.env.MYSQLPORT || 3306,
+  user: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || '123456',
+  database: process.env.MYSQLDATABASE || 'what_to_eat'
 })
 
 //执行连接方法
