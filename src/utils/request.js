@@ -12,8 +12,9 @@ import qs from "qs";
 import local from "../utils/local";
 
 
-//默认服务器地址
-axios.defaults.baseURL = "http://127.0.0.1:5000";
+// 默认服务器地址（优先读取部署环境变量）
+const API_BASE_URL = process.env.VUE_APP_API_BASE_URL || "http://127.0.0.1:5000";
+axios.defaults.baseURL = API_BASE_URL;
 
 /* 
     axios请求拦截器： 

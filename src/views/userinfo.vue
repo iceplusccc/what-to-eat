@@ -182,7 +182,7 @@ import local from '../utils/local'
 
 const router = useRouter()
 
-const backendBase = 'http://127.0.0.1:5000'
+const backendBase = process.env.VUE_APP_API_BASE_URL || 'http://127.0.0.1:5000'
 const defaultAvatar = ref(`${backendBase}/upload/portrait.jpg`)
 const isEditing = ref(false)
 const saving = ref(false)
