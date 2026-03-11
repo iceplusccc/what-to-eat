@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // Railway/本地都兼容的 DB 配置
 const dbHost = process.env.MYSQLHOST || process.env.MYSQL_HOST || 'localhost';
