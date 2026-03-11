@@ -238,7 +238,8 @@ const restaurantLocation = reactive(
 const searchInput = ref('')
 const username = ref('用户')
 const userAvatar = ref('')
-const backendBase = process.env.VUE_APP_API_BASE_URL || 'http://127.0.0.1:5000'
+const backendBaseRaw = process.env.VUE_APP_API_BASE_URL || 'http://127.0.0.1:5000'
+const backendBase = (/^https?:\/\//i.test(backendBaseRaw) ? backendBaseRaw : `https://${backendBaseRaw}`).replace(/\/+$/, '')
 const defaultAvatar = ref(`${backendBase}/upload/portrait.jpg`)
 
 const normalizeAvatar = (url) => {
