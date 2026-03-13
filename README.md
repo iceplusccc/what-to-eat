@@ -1,6 +1,6 @@
 # what-to-eat
 
-## Project setup
+## Project setup 
 ```
 npm install
 ```
